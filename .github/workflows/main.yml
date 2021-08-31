@@ -1,0 +1,28 @@
+name: archiso
+
+on:
+  #push:
+  #schedule:
+  #  - cron: '0 * * * *'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: makearchiso
+        uses: ./
+
+      - name: check md5sum
+        run: md5sum ./build/out/*.iso
+
+      - name: upload to release
+        uses: ncipollo/release-action@v1
+        with:
+          allowUpdates: true
+          tag: $(date +%Y.%m.%d)
+          artifacts: "./build/out/*.iso"
+          token: ${{ secrets.GITHUB_TOKEN }}

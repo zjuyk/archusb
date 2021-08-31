@@ -2,7 +2,7 @@
 
 **TODO:**
 
-- [ ] add monthly build ci
+- [x] add monthly build ci
 - [ ] add a xorg environment e.g. i3wm
 - [ ] add several useful scripts
 
